@@ -33,8 +33,16 @@ export const getRenderElement = ({
   ...props
 }: RenderElementProps) => {
   if (props.element.type === type) {
+    const {
+      element: { id },
+    } = props;
     return (
-      <Component attributes={attributes} {...props} {...pickBy(rootProps)} />
+      <Component
+        attributes={attributes}
+        {...props}
+        id={id}
+        {...pickBy(rootProps)}
+      />
     );
   }
 };
@@ -42,17 +50,16 @@ export const getRenderElement = ({
 /**
  * Get a `renderElement` handler for multiple types.
  */
-export const getRenderElements = (options: Required<RenderNodeOptions>[]) => ({
-  attributes,
-  element,
-  children,
-}: RenderElementProps) => {
+export const getRenderElements = (
+  options: (Required<RenderNodeOptions> & { id?: string })[]
+) => ({ attributes, element, children }: RenderElementProps) => {
   for (const { type, component: Component, rootProps } of options) {
     if (element.type === type) {
       return (
         <Component
           attributes={attributes}
           element={element}
+          id={element.id}
           {...pickBy(rootProps)}
         >
           {children}

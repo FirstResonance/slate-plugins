@@ -9,11 +9,15 @@ export const ELEMENT_TD = 'td';
 
 export const DEFAULTS_TABLE: Record<
   TableKeyOption,
-  Required<TablePluginOptionsValues>
+  Required<TablePluginOptionsValues> & {
+    columnWidths?: string[] | number[];
+    id?: string;
+  }
 > = {
   table: {
     component: TableElement,
     type: ELEMENT_TABLE,
+    columnWidths: [],
     rootProps: {
       className: 'slate-table',
       as: 'table',
@@ -37,9 +41,10 @@ export const DEFAULTS_TABLE: Record<
         root: {
           backgroundColor: 'rgb(244, 245, 247)',
           border: '1px solid rgb(193, 199, 208)',
-          padding: '8px',
           minWidth: '48px',
           textAlign: 'left',
+          padding: '8px',
+          position: 'relative',
           selectors: {
             '> *': {
               margin: 0,
@@ -59,8 +64,9 @@ export const DEFAULTS_TABLE: Record<
         root: {
           backgroundColor: 'rgb(255, 255, 255)',
           border: '1px solid rgb(193, 199, 208)',
-          padding: '8px',
           minWidth: '48px',
+          padding: '8px',
+          position: 'relative',
           selectors: {
             '> *': {
               margin: 0,

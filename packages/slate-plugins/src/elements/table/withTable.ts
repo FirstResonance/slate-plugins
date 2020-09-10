@@ -33,7 +33,6 @@ export const withTable = (options?: WithTableOptions) => <T extends Editor>(
 
     operation(unit);
   };
-
   // prevent deleting cells with deleteBackward
   editor.deleteBackward = preventDeleteCell(deleteBackward, Editor.start);
 

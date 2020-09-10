@@ -11,6 +11,11 @@ import {
 } from '../../../index';
 import { serializeHTMLFromNodes } from '../index';
 
+jest.mock('slate-react', () => ({
+  useEditor: () => Object.create({}),
+  useFocused: () => true,
+  useSelected: () => true,
+}));
 it('serialize list to html', () => {
   const render = htmlStringToDOMNode(
     serializeHTMLFromNodes([ListPlugin()])([

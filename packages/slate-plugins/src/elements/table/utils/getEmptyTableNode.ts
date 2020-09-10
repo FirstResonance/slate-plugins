@@ -8,6 +8,7 @@ export const getEmptyTableNode = (options?: TableOptions) => {
 
   return {
     type: table.type,
+    columnWidths: table.columnWidths,
     children: [getEmptyRowNode(2, options), getEmptyRowNode(2, options)],
   };
 };

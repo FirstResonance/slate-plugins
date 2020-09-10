@@ -29,7 +29,6 @@ export const StyledElementBase = ({
   });
 
   const Tag = as;
-
   return (
     <Tag {...attributes} className={classNames.root}>
       {children}

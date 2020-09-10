@@ -28,6 +28,7 @@ import {
   SlateDocument,
   SoftBreakPlugin,
   TablePlugin,
+  TableResizerPlugin,
   ToolbarMark,
   ToolbarTable,
   withTable,
@@ -51,6 +52,7 @@ const withPlugins = [withReact, withHistory, withTable(options)] as const;
 
 export const Example = () => {
   const plugins = [
+    TableResizerPlugin(options),
     ParagraphPlugin(options),
     HeadingPlugin(options),
     BoldPlugin(options),
