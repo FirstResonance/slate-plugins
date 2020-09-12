@@ -1,0 +1,35 @@
+name: Manually publish pre-release
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+          description: Release tag
+          required: true
+          default: 'prerelease'
+
+env:
+  CI: true
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-18.04
+    steps:
+      - run: yarn install
+      - run: yarn build
+
+      # Setup .npmrc file to publish to GitHub Packages
+      - name: Setup GitHub registry
+        uses: actions/setup-node@v1
+        with:
+          node_version: 12
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@firstresonance'
+
+      # Publish to GitHub Packages
+      - name: Publish to GitHub Packages
+        run: |
+          yarn lerna publish --dist-tag ${{ github.event.inputs.tag }} --registry https://npm.pkg.github.com
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
