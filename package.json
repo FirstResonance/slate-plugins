@@ -14,7 +14,7 @@
     "Gruntfile.js"
   ],
   "scripts": {
-    "prepare": "npm build",
+    "prepare": "yarn build",
     "postinstall": "lerna bootstrap --ignore-prepublish --hoist && grunt --gruntfile Gruntfile.js",
     "build": "lerna run build",
     "build:w": "concurrently \"yarn build:core -w\" \"yarn build:plugins -w\"",
