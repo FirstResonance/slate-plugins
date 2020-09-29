@@ -1,16 +1,11 @@
 /**
  * Get new direction if updated
  */
+const allowedDirections = ['top', 'bottom', 'inside', 'left', 'right']
 export const getNewDirection = (previousDir: string, dir?: string) => {
   if (!dir && previousDir) {
     return '';
   }
 
-  if (dir === 'top' && previousDir !== 'top') {
-    return 'top';
-  }
-
-  if (dir === 'bottom' && previousDir !== 'bottom') {
-    return 'bottom';
-  }
+  if (dir && allowedDirections.includes(dir) && dir !== previousDir) return dir;
 };

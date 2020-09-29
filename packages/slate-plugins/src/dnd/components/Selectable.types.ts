@@ -28,8 +28,9 @@ export interface SelectableProps
 
 export interface SelectableStyleProps {
   className?: string;
-  direction: '' | 'top' | 'bottom';
+  direction: '' | 'top' | 'bottom' | 'left' | 'right';
   isDragging: boolean;
+  isDropBlock?: boolean;
 
   // TODO: tbd
   selected?: boolean;
@@ -82,6 +83,11 @@ export interface SelectableStyles {
    * Show a dropline above or below the block when dragging a block.
    */
   dropLine?: IStyle;
+
+  /**
+   * Show a dropZone around a block.
+   */
+  dropBlock?: IStyle;
 }
 
 export interface DragItemBlock {
@@ -89,4 +95,10 @@ export interface DragItemBlock {
   type: string;
 }
 
-export type DropDirection = 'top' | 'bottom' | undefined;
+export type DropDirection =
+  | 'top'
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'inside'
+  | undefined;
