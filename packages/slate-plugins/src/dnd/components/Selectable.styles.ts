@@ -9,6 +9,7 @@ export const getSelectableStyles = ({
   className,
   direction,
   isDragging,
+  isDropBlock,
   selected,
 }: SelectableStyleProps): SelectableStyles => {
   return {
@@ -26,7 +27,9 @@ export const getSelectableStyles = ({
       },
       className,
     ],
-    block: {},
+    block: {
+      paddingLeft: '24px',
+    },
     blockAndGutter: {
       paddingTop: 3,
       paddingBottom: 3,
@@ -35,10 +38,11 @@ export const getSelectableStyles = ({
       {
         position: 'absolute',
         top: 0,
-        transform: 'translateX(-100%)',
+        transform: 'translateX(0%)',
         display: 'flex',
         height: '100%',
         opacity: 0,
+        maxWidth: '22px',
       },
       classNames.gutterLeft,
     ],
@@ -78,6 +82,15 @@ export const getSelectableStyles = ({
       height: 2,
       opacity: 1,
       background: '#B4D5FF',
+      ...(['left', 'right'].includes(direction) && {
+        left: direction !== 'right' ? 0 : 'unset',
+        top: -1,
+        height: '100%',
+        width: 2,
+      }),
+    },
+    dropBlock: {
+      outline: isDropBlock ? '1px solid #B4D5FF' : undefined,
     },
   };
 };

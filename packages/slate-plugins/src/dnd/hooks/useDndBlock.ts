@@ -13,7 +13,9 @@ export const useDndBlock = ({
 }) => {
   const editor = useEditor() as ReactEditor & ToggleTypeEditor;
 
-  const [dropLine, setDropLine] = useState<'' | 'top' | 'bottom'>('');
+  const [dropLine, setDropLine] = useState<
+    '' | 'top' | 'bottom' | 'inside' | 'left' | 'right'
+  >('');
 
   const [{ isDragging }, dragRef, preview] = useDragBlock(editor, id);
   const [{ isOver }, drop] = useDropBlockOnEditor(editor, {
@@ -31,7 +33,8 @@ export const useDndBlock = ({
 
   return {
     isDragging,
-    dropLine,
+    dropLine: dropLine !== 'inside' ? dropLine : '',
     dragRef,
+    isDropBlock: dropLine === 'inside',
   };
 };

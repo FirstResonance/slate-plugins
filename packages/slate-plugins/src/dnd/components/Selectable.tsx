@@ -29,9 +29,9 @@ const SelectableBase = ({
   const rootRef = useRef<HTMLDivElement>(null);
   const multiRootRef = useMergedRef(componentRef, rootRef);
 
-  const { dropLine, dragRef, isDragging } = useDndBlock({
+  const { dropLine, dragRef, isDragging, isDropBlock } = useDndBlock({
     id: element.id,
-    blockRef,
+    blockRef: rootRef,
   });
 
   const dragWrapperRef = useRef(null);
@@ -41,13 +41,18 @@ const SelectableBase = ({
     className,
     direction: dropLine,
     isDragging,
+    isDropBlock,
   });
 
   return (
     <div className={classNames.root} ref={multiRootRef}>
       <div
         ref={blockRef}
-        className={mergeStyles(classNames.blockAndGutter, classNames.block)}
+        className={mergeStyles(
+          classNames.blockAndGutter,
+          classNames.block,
+          classNames.dropBlock
+        )}
       >
         {children}
 
