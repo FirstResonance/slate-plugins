@@ -27,9 +27,7 @@ export const getSelectableStyles = ({
       },
       className,
     ],
-    block: {
-      paddingLeft: '24px',
-    },
+    block: {},
     blockAndGutter: {
       paddingTop: 3,
       paddingBottom: 3,
@@ -38,11 +36,10 @@ export const getSelectableStyles = ({
       {
         position: 'absolute',
         top: 0,
-        transform: 'translateX(0%)',
+        transform: 'translateX(-100%)',
         display: 'flex',
         height: '100%',
         opacity: 0,
-        maxWidth: '22px',
       },
       classNames.gutterLeft,
     ],
@@ -77,17 +74,11 @@ export const getSelectableStyles = ({
       position: 'absolute',
       left: 0,
       right: 0,
-      top: direction === 'top' ? -1 : undefined,
-      bottom: direction === 'bottom' ? -1 : undefined,
+      top: ['top', 'left'].includes(direction)  ? -1 : undefined,
+      bottom: ['righ', 'bottom'] ? -1 : undefined,
       height: 2,
       opacity: 1,
       background: '#B4D5FF',
-      ...(['left', 'right'].includes(direction) && {
-        left: direction !== 'right' ? 0 : 'unset',
-        top: -1,
-        height: '100%',
-        width: 2,
-      }),
     },
     dropBlock: {
       outline: isDropBlock ? '1px solid #B4D5FF' : undefined,
